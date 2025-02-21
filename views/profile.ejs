@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="/Images/stylesheet/style.css"> </head>
+
+<body class="bg-gray-100 mt-5 ml-5 block">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6">Your Profile</h1>
+        <div class="details font-medium text-red-700 font-bold">Hello ,
+            <%=user.name%>
+        </div>
+        <form action="/post" method="post" class="post">
+            <textarea class="text" placeholder="What is on Your Mind?" name="content"></textarea>
+            <input class="btn " type="submit" value="Post ">
+        </form>
+        <br><br>
+        <h3 class="post-text ">Your Posts </h3>
+        <div class="main-posts ">
+            <%posts.forEach((val)=>{%>
+                <div class="post-cards ">
+                    <%=val.content%>
+                </div>
+                <div class="likes">
+                    <a href="/likes/<%=val._id%>">Like</a>
+                </div>
+                <% })%>
+        </div>
+
+</body>
+
+</html>

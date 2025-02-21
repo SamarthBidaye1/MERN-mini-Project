@@ -1,0 +1,65 @@
+.post {
+    width: 100%;
+    height: 200px;
+}
+
+.text {
+    background-color: rgb(243, 238, 232);
+    resize: none;
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.btn {
+    margin-top: 10px;
+    width: 20%;
+    height: fit-content;
+    border-radius: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.details {
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+.post-cards {
+    border: 1px solid black;
+    height: 70px;
+    border-radius: 10px;
+    background-color: rgb(244, 209, 140);
+    color: black;
+    font-size: larger;
+    font-weight: 500;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.post-text {
+    font-size: 25px;
+    margin-bottom: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: brown;
+    font-weight: 700;
+    background-color: beige;
+}
+
+.main-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.likes {
+    background-color: rgb(232, 2, 2);
+    border-radius: 10px;
+    padding: 5px;
+    width: fit-content;
+    font-size: larger;
+    color: white;
+    margin-bottom: 10px;
+}
