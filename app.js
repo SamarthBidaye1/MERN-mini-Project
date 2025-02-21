@@ -13,8 +13,26 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usermodal = require('./modals/user');
 const postmodal = require('./modals/posts');
 
-const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
+const jwt = require("jsonwebtoken");
+const multer = require("multer");
+// const upload = multer({ dest: 'uploads/' })
+
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, path.join(__dirname, 'public/images/photos'))
+    },
+    filename: function(req, file, cb) {
+        crypto.randomBytes(10, (err, bytes) => {
+            const fn = bytes.toString('hex') + path.extname(file.originalname);
+            cb(null, fn)
+        })
+    }
+})
+
+const upload = multer({ storage: storage })
 
 const skey = 'data';
 
@@ -24,6 +42,15 @@ app.get('/', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render("index")
+})
+
+app.get('/upload', upload.single('name'), (req, res) => { // in multer req.body is for text doc
+    console.log(req.file);
+    res.render("test")
+})
+app.post('/upload', upload.single('name'), (req, res) => { // in multer req.body is for text doc
+    console.log(req.file);
+    res.render("test")
 })
 
 app.get('/profile', isLoggedin, async(req, res) => {
@@ -48,7 +75,7 @@ app.get('/likes/:id', isLoggedin, async(req, res) => {
     let posts = await postmodal.findOne({ _id: req.params.id }).populate("user");
     console.log(posts);
     posts.likes.push(req.user.userid);
-    await post.save();
+    await posts.save();
     res.redirect('/profile')
 })
 
